@@ -1,0 +1,85 @@
+/* emad */
+
+/* jafar */
+
+/* manar */
+
+/* laith */
+
+/* duaa */
+#cards-container h1:first-of-type {
+	font-weight: 200;
+	color: hsl(234, 12%, 34%);
+}
+
+#cards-container h1:last-of-type {
+	color: hsl(234, 12%, 34%);
+}
+
+@media (max-width: 400px) {
+	#cards-container h1 {
+		font-size: 1.5rem;
+	}
+}
+
+#cards-container .header {
+	text-align: center;
+	line-height: 0.8;
+	margin-bottom: 50px;
+	margin-top: 100px;
+}
+
+#cards-container .header p {
+	margin: 0 auto;
+	line-height: 2;
+	color: hsl(229, 6%, 66%);
+}
+
+#cards-container .box p {
+	color: hsl(229, 6%, 66%);
+}
+
+#cards-container .box {
+	border-radius: 5px;
+	box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+	padding: 30px;
+	margin: 20px;
+	position: relative;
+	height: fit-content;
+}
+#cards-container .delete-btn img {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	width: 23px !important;
+}
+
+#cards-container .edit-btn {
+	position: absolute;
+	top: 5.9px;
+	right: 45px;
+	width: 23px !important;
+}
+
+#cards-container #check-btn img {
+	text-align: end;
+	width: 30px !important;
+}
+
+#cards-container .cyan {
+	border-top: 3.5px solid hsl(180, 62%, 55%);
+}
+#cards-container .red {
+	border-top: 3.5px solid hsl(0, 78%, 62%);
+}
+#cards-container .blue {
+	border-top: 3.5px solid hsl(212, 86%, 64%);
+}
+#cards-container .orange {
+	border-top: 3.5px solid hsl(34, 97%, 64%);
+}
+
+#cards-container h2 {
+	color: hsl(234, 12%, 34%);
+	font-weight: 600;
+}
