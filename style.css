@@ -97,6 +97,7 @@ transition: .5s ease-in-out;
 	transition: .8s ease-in-out;
 }
 
+
 #logLab{
 	color: #573b8a;
 	transform: scale(.9);
@@ -111,10 +112,10 @@ transition: .5s ease-in-out;
 	transform: scale(1.5);
 }
 
-#check:checked ~ #signLab{
+/* #check:checked ~ #signLab{
 	transform: scale(6);
 
-}
+} */
 
 /* modal styling*/
 .modal, .modal-dialog, .modal-body {
