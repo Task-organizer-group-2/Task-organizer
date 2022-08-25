@@ -323,3 +323,141 @@ display: block;
 
 
 
+/* manar */
+
+.registerContainer{
+	/* margin: 0;
+	padding: 0; */
+	width: 450px;
+	height: 600px;
+	justify-content: center;
+	align-items: center;
+	/* min-height: 100vh; */
+	font-family: 'Jost',sans-serif;
+	background: linear-gradient(to bottom , #0f0c29 , #302b63, #24243e);
+overflow: hidden;
+border-radius: 10px;
+box-shadow: 5px 20px 50px thistle;
+}
+
+#check{
+	display: none;
+}
+
+.signup{
+	position: relative;
+	/* height: 150px;
+	width: 300px; */
+	justify-content: center;
+}
+
+#signLab,.label{
+color: #fff;
+font-size: 2.3em;
+justify-content: center;
+display: flex;
+margin: 60px;
+font-weight: bold;
+cursor: pointer;
+transition: .5s ease-in-out;
+}
+
+/* .inputDesign{
+	position: relative;
+	font-size: 14px;
+	padding: 20px;
+	margin: 5px;
+
+} */
+.regInput{
+	width: 60%;
+	height: 20px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	/* appearance: none; */
+	outline: none;
+	border-radius: 5px;
+	/* font-size: 14px; */
+
+}
+
+.regBtn{
+	color: #090909;
+	padding: 1em 2em;
+	font-size: 18px;
+	width: 80%;
+	height: 40px;
+	line-height: 1px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	border-radius: 300px;
+	background: #e8e8e8;
+	border: 2px solid #e8e8e8;
+	transition: all .3s ease-in;
+	cursor: pointer;
+	box-shadow: 2px 2px 6px #c5c5c5,
+	-1px -2px 6px #fff;
+
+}
+
+.regBtn:hover{
+	box-shadow: -1px -1px 2px #c5c5c5,
+	3px 3px 3px #fff;
+}
+
+.login{
+	height: 560px;
+	background: #eee;
+	border-radius: 60% / 10%;
+	transform: translateY(-350px);
+	transition: .8s ease-in-out;
+}
+
+#logLab{
+	color: #573b8a;
+	transform: scale(.9);
+
+}
+
+#check:checked ~ .login{
+	transform: translateY(0px);
+}
+
+#check:checked ~ #logLab{
+	transform: scale(1.5);
+}
+
+#check:checked ~ #signLab{
+	transform: scale(6);
+
+}
+
+/* modal styling*/
+.modal, .modal-dialog, .modal-body {
+    width: 450px;
+	height: 600px;
+    align-self: center;
+	justify-content: center;
+	align-items: center;
+	/* min-height: 100vh; */
+	font-family: 'Jost',sans-serif;
+	background: linear-gradient(to bottom , #0f0c29 , #302b63, #24243e);
+overflow: hidden;
+border-radius: 10px;
+box-shadow: 5px 20px 50px thistle;   
+}
+
+
+
+
+
+
+
+
+
+
