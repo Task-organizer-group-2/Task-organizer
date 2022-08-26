@@ -5,24 +5,54 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Home</title>
-		<link
+		<!-- <link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 			integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 			crossorigin="anonymous"
+		/> -->
+		<!-- ===== Boxicons CSS ===== -->
+		<link
+			href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+			rel="stylesheet"
 		/>
+
+		<!-- ===== font-awesome ===== -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+			integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
 		<header>
 			<!-- emad - start -->
-
+			<nav>
+				<div class="nav-bar">
+					<span class="logo1 navLogo"
+						><a href="#"><img src="./EEE.png" width="150px" /></a
+					></span>
+					<div class="but">
+						<button class="button1 showMe">Sign in</button>
+					</div>
+					<div class="darkLight-searchBox">
+						<div class="dark-light">
+							<i class="bx bx-moon moon"></i>
+							<i class="bx bx-sun sun"></i>
+						</div>
+					</div>
+				</div>
+			</nav>
 			<!-- emad - end -->
 		</header>
 		<main>
 			<!-- jafar - start - hero section -->
 
-			<div class="heroSection">
+			<div class="heroSection" id="blur">
 				<div class="headingAndDescription">
 					<h1 class="heroHeading">Welcome to our Website</h1>
 
@@ -34,7 +64,7 @@
 					</h3>
 					<button
 						type="button"
-						class="btn btn-outline-light callToActionButton"
+						class="btn btn-outline-light callToActionButton showMe"
 					>
 						Join us Now!
 					</button>
@@ -42,10 +72,11 @@
 			</div>
 			<!-- jafar - end - hero section -->
 			<!-- manar- start - registration/login -->
-
-			<div class="registerContainer">
+			<div class="registerContainer" id="popup">
 				<input type="checkbox" id="check" aria-hidden="true" />
-
+				<label id="exit" class="close-btn fas fa-times">
+					<!-- <i class=""></i> -->
+				</label>
 				<div class="signup">
 					<form id="regForm">
 						<div class="form-control">
@@ -119,40 +150,42 @@
 				</div>
 
 				<div class="login">
-					<div class="form-control">
-						<label for="check" id="logLab" class="label" aria-hidden="true"
-							>LOG IN</label
-						>
-						<div>
-							<label class="inputDesign"></label>
-							<input
-								type="email"
-								class="regInput"
-								name="email"
-								id="logEmail"
-								placeholder="Email"
-								required
-							/>
-							<!-- <i class="fas fa-check-circle"></i>
+					<form id="loginForm">
+						<div class="form-control">
+							<label for="check" id="logLab" class="label" aria-hidden="true"
+								>LOG IN</label
+							>
+							<div>
+								<label class="inputDesign"></label>
+								<input
+									type="email"
+									class="regInput"
+									name="email"
+									id="logEmail"
+									placeholder="Email"
+									required
+								/>
+								<!-- <i class="fas fa-check-circle"></i>
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small> -->
-						</div>
-						<div>
-							<label class="inputDesign"></label>
-							<input
-								type="password"
-								name="password"
-								class="regInput"
-								id="logPassword"
-								placeholder="Password"
-								required
-							/>
-							<!-- <i class="fas fa-check-circle"></i>
+							</div>
+							<div>
+								<label class="inputDesign"></label>
+								<input
+									type="password"
+									name="password"
+									class="regInput"
+									id="logPassword"
+									placeholder="Password"
+									required
+								/>
+								<!-- <i class="fas fa-check-circle"></i>
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small> -->
+							</div>
+							<button type="submit" id="login" class="regBtn">log-in</button>
 						</div>
-						<button type="submit" id="login" class="regBtn">log-in</button>
-					</div>
+					</form>
 				</div>
 			</div>
 
@@ -160,14 +193,33 @@
 		</main>
 		<footer>
 			<!-- emad - start -->
+			<div class="textleft">
+				<h3>Taskat, get the work done!</h3>
+				<p>
+					Task management is the link between planning to do something and
+					getting it done. Your task management software should provide an
+					overview of work in progress that enables tracking from conception to
+					completion.
+				</p>
+			</div>
+			<div class="logoright">
+				<span class="logo2 navLogo"
+					><a href="#"><img src="./EEE.png" width="150px" /></a
+				></span>
+				<p class="footer-bottom">©Copyright 2022</p>
+			</div>
 
 			<!-- emad - end -->
 		</footer>
 		<script
+			src="https://kit.fontawesome.com/8b42dcad4f.js"
+			crossorigin="anonymous"
+		></script>
+		<!-- <script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 			crossorigin="anonymous"
-		></script>
+		></script> -->
 		<script src="./app.js"></script>
 	</body>
 </html>

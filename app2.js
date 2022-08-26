@@ -1,3 +1,52 @@
+// emad js
+const body = document.querySelector("body"),
+	nav = document.querySelector("nav"),
+	modeToggle = document.querySelector(".dark-light"),
+	sidebarOpen = document.querySelector(".sidebarOpen"),
+	siderbarClose = document.querySelector(".siderbarClose");
+
+let getMode = localStorage.getItem("mode");
+if (getMode && getMode === "dark-mode") {
+	body.classList.add("dark");
+}
+
+// js code to toggle dark and light mode
+modeToggle.addEventListener("click", () => {
+	modeToggle.classList.toggle("active");
+	body.classList.toggle("dark");
+
+	// js code to keep user selected mode even page refresh or file reopen
+	if (!body.classList.contains("dark")) {
+		localStorage.setItem("mode", "light-mode");
+	} else {
+		localStorage.setItem("mode", "dark-mode");
+	}
+});
+
+//   js code to toggle sidebar
+sidebarOpen.addEventListener("click", () => {
+	nav.classList.add("active");
+});
+
+body.addEventListener("click", (e) => {
+	let clickedElm = e.target;
+
+	if (
+		!clickedElm.classList.contains("sidebarOpen") &&
+		!clickedElm.classList.contains("menu")
+	) {
+		nav.classList.remove("active");
+	}
+});
+// end emad js //
+
+let logoutBtn = document.getElementById("logout-btn");
+logoutBtn.addEventListener("click", (e) => {
+	window.location = "./index.html";
+
+	localStorage.removeItem("currentloggedin");
+});
+
 // laith
 function Task(title, description, priority) {
 	this.title = title;
@@ -30,9 +79,11 @@ function render(event) {
 
 form.addEventListener("submit", render);
 
-let userName = "laith"; // example for testing, actual username is from manar
-// let userName = JSON.parse(sessionStorage.getItem(currentloggedin)).fName;
-// console.log(userName);
+//   let userName = "laith"; // example for testing, actual username is from manar
+let userName =
+	JSON.parse(localStorage.getItem("currentloggedin")).fName +
+	" " +
+	JSON.parse(localStorage.getItem("currentloggedin")).lName;
 
 function saveToLocal() {
 	let stringArr = JSON.stringify(allTasks);
@@ -50,15 +101,14 @@ function getFromLocal() {
 	}
 }
 getFromLocal();
+
+//display the user name in nav bar
+let navName = document.getElementById("navName");
+navName.textContent = `Welcome ${userName}`;
+
 // duaa
+
 let cardRow = document.getElementById("card-row");
-// bootstrap tooltip
-let tooltipTriggerList = [].slice.call(
-	document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-	return new bootstrap.Tooltip(tooltipTriggerEl);
-});
 
 // addCard function to add cards from form
 let cardContainer = document.getElementById("card-container");
@@ -67,20 +117,19 @@ function addCard(task) {
 	const taskCard = document.createElement("div");
 	taskCard.classList.add("col-sm-4");
 	let x = "";
+
 	if (task.status == "completed") {
 		x = "checked";
 	}
 	taskCard.innerHTML = `
-    <div class="box ${colorClass(task.priority)}" data-bs-toggle="tooltip"
-    data-bs-placement="top"
-    title="${task.priority}">
+    <div class="box ${colorClass(task.priority)}" >
     <a href="" class="delete-btn" style="color: black" 
     >
     <img src="./duaa-images/trash-outline.svg" id= "${task.id}" name="id">
      </a>
     <h2>${task.title}</h2>
     <p>${task.description}</p>
-	<input type="checkbox" name="checkbox" class="check-btn" id="${task.id2}"  ${x}>
+	<input type="checkbox" name="checkbox" class="check-btn" id="${task.id2}" ${x}>
     </div>
   
     `;
@@ -177,214 +226,84 @@ function setCheckClass(check) {
 
 // jafar
 
+// jafar
+
 console.log(allCards);
 
 function show1(firstDropdownvalue) {
 	document.querySelector(".textBox1").value = firstDropdownvalue;
 }
 
+let statusCondition = null;
+let priorityCondition = null;
+function getStatus(sel) {
+	statusCondition = sel.options[sel.selectedIndex].text;
+	let filtered =
+		statusCondition && priorityCondition
+			? allCards.filter(
+					(card) =>
+						card.priority == priorityCondition && card.status == statusCondition
+			  )
+			: statusCondition
+			? allCards.filter((card) => card.status == statusCondition)
+			: priorityCondition
+			? allCards.filter((card) => card.priority == priorityCondition)
+			: [allCards];
+
+	displayCards(filtered);
+}
+function getPriority(sel) {
+	priorityCondition = sel.options[sel.selectedIndex].text;
+	let filtered =
+		statusCondition && priorityCondition
+			? allCards.filter(
+					(card) =>
+						card.priority == priorityCondition && card.status == statusCondition
+			  )
+			: statusCondition
+			? allCards.filter((card) => card.priority == statusCondition)
+			: priorityCondition
+			? allCards.filter((card) => card.priority == priorityCondition)
+			: allCards;
+
+	displayCards(filtered);
+}
+function displayCards(filteredArray) {
+	allCards.forEach((ele) => {
+		ele.element.style.display = "none";
+	});
+	filteredArray.forEach((ele) => {
+		ele.element.style.display = "block";
+	});
+	console.log(filteredArray);
+}
+
 function show2(secondDropdownvalue) {
 	document.getElementById("TextBox2").value = secondDropdownvalue;
 }
 
-//toggle to class active once we clicked on the dropdown
+let filteredArray = [];
 
-let dropdown1 = document.getElementById("filterByStatus");
-dropdown1.onclick = function () {
-	dropdown1.classList.toggle("active");
-};
+function ShowAllCards() {
+	allCards.forEach((ele) => {
+		location.reload();
+		// ele.element.style.display = 'block';
+		// document.getElementById("StatusID").value="Filter by Status...";
+		// document.getElementById("PriorityID").value="Filter by Priority...";
+	});
+}
 
-let dropdown2 = document.getElementById("filterByPriority");
-dropdown2.onclick = function () {
-	dropdown2.classList.toggle("active");
-};
+sidebarOpen.addEventListener("click", () => {
+	nav.classList.add("active");
+});
 
-let inComplete = document.getElementById("InCompleteDropdown");
-inComplete.addEventListener("click", (event) => {
-	event.preventDefault();
+body.addEventListener("click", (e) => {
+	let clickedElm = e.target;
 
-	let otherFilterValue = document.querySelector(".textBox1").value;
-	// firstCondition = document.querySelector(".textBox1").value;
-	// secondCondition = document.querySelector(".textBox2").value;
-
-	let filteredArray = allCards.filter(
-		(card) => card.priority === otherFilterValue
-	);
-
-	// console.log(filteredArray.length);
-	console.log(otherFilterValue);
-	// console.log(filteredArray);
-
-	if (filteredArray.length == 0) {
-		allCards.forEach((card) => {
-			const visible = card.status.toLowerCase() === "incomplete";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
-	} else {
-		filteredArray.forEach((card) => {
-			const visible = card.status.toLowerCase() === "incomplete";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
+	if (
+		!clickedElm.classList.contains("sidebarOpen") &&
+		!clickedElm.classList.contains("menu")
+	) {
+		nav.classList.remove("active");
 	}
-});
-
-let completedDropdown = document.getElementById("completedDropdown");
-
-completedDropdown.addEventListener("click", (event) => {
-	event.preventDefault();
-
-	let otherFilterValue = document.querySelector(".textBox1").value;
-	// console.log(allCards.filter((card) => card.priority == otherFilterValue));
-	let filteredArray = allCards.filter(
-		(card) => card.priority == otherFilterValue
-	);
-
-	console.log(filteredArray.length);
-
-	if (filteredArray.length == 0) {
-		allCards.forEach((card) => {
-			const visible = card.status.toLowerCase() === "completed";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
-	} else {
-		filteredArray.forEach((card) => {
-			const visible = card.status.toLowerCase() === "completed";
-			if (visible === true) {
-				card.element.style.display = "block";
-			} else {
-				card.element.style.display = "none";
-			}
-		});
-	}
-});
-
-let CriticalDropdown = document.getElementById("CriticalDropdown");
-
-CriticalDropdown.addEventListener("click", (event) => {
-	event.preventDefault();
-
-	let otherFilterValue = document.querySelector(".textBox2").value;
-	console.log(allCards.filter((card) => card.status === otherFilterValue));
-	let filteredArray = allCards.filter(
-		(card) => card.status == otherFilterValue
-	);
-
-	console.log(otherFilterValue);
-
-	console.log(filteredArray.length);
-
-	if (filteredArray.length == 0) {
-		allCards.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "critical";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
-	} else {
-		filteredArray.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "critical";
-			if (visible === true) {
-				card.element.style.display = "block";
-			} else {
-				card.element.style.display = "none";
-			}
-		});
-	}
-});
-
-let MediumDropdown = document.getElementById("MediumDropdown");
-
-MediumDropdown.addEventListener("click", (event) => {
-	event.preventDefault();
-
-	let otherFilterValue = document.querySelector(".textBox2").value;
-	console.log(allCards.filter((card) => card.status == otherFilterValue));
-	let filteredArray = allCards.filter(
-		(card) => card.status == otherFilterValue
-	);
-	console.log(filteredArray.length);
-
-	console.log(otherFilterValue);
-
-	if (filteredArray.length == 0) {
-		allCards.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "normal";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
-	} else {
-		filteredArray.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "normal";
-			if (visible === true) {
-				card.element.style.display = "block";
-			} else {
-				card.element.style.display = "none";
-			}
-		});
-	}
-});
-
-let LowPrioritDropdown = document.getElementById("LowPrioritDropdown");
-
-LowPrioritDropdown.addEventListener("click", (event) => {
-	event.preventDefault();
-
-	let otherFilterValue = document.querySelector(".textBox2").value;
-	console.log(allCards.filter((card) => card.status == otherFilterValue));
-	let filteredArray = allCards.filter(
-		(card) => card.status == otherFilterValue
-	);
-
-	console.log(filteredArray.length);
-
-	if (filteredArray.length == 0) {
-		allCards.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "low priority";
-			if (visible != true) {
-				card.element.style.display = "none";
-			} else {
-				card.element.style.display = "block";
-			}
-		});
-	} else {
-		filteredArray.forEach((card) => {
-			const visible = card.priority.toLowerCase() === "low priority";
-			if (visible === true) {
-				card.element.style.display = "block";
-			} else {
-				card.element.style.display = "none";
-			}
-		});
-	}
-});
-
-let RefreshFilter1 = document.getElementById("RefreshFilter1");
-
-RefreshFilter1.addEventListener("click", (event) => {
-	event.preventDefault();
-	location.reload();
-});
-
-let RefreshFilter2 = document.getElementById("RefreshFilter2");
-
-RefreshFilter2.addEventListener("click", (event) => {
-	event.preventDefault();
-	location.reload();
 });
