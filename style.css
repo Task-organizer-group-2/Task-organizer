@@ -17,76 +17,88 @@
 /* https://view.com/sites/default/files/image_crop_hero/solutions-commercial-office-hero-image-netflix-DESKTOP-LARGE.jpg */
 /* https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80 */
 
+header {
+	width: 100%;
+	height: 50px;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	position: absolute;
+}
+
+a {
+	text-decoration: none;
+}
+
+.navbar {
+	display: flex;
+	width: 100%;
+	height: 50px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 50px 0px 80px;
+	background: rgba(255, 255, 255, 0.24);
+	backdrop-filter: blur(7px);
+}
+.logo {
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.navbar .menubar span {
+	color: #fff;
+	font-size: 22px;
+	cursor: pointer;
+	display: none;
+}
+#click {
+	display: none;
+}
+.navbar ul {
+	display: flex;
+}
+.navbar ul li {
+	margin-left: 30px;
+	font-size: 1.063rem;
+	list-style: none;
+}
+.navbar ul a li {
+	color: white;
+	position: relative;
+}
+.navbar ul a li::after {
+	content: "";
+	width: 0;
+	height: 3px;
+	position: absolute;
+	bottom: -7px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: black;
+	border-radius: 15px;
+	transition: width 0.3s;
+}
+.navbar ul a li:hover {
+	color: black;
+}
+.navbar ul a li:hover::after {
+	color: white;
+	width: 100%;
+}
+
 .heroSection {
 	color: white;
 	height: 100vh;
-	width: 100vw;
+	width: auto;
 	background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
 		url("https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80");
 	background-size: cover;
 	display: flex;
 	background-attachment: fixed;
 	background-position: center;
-	opacity: 100%;
-	/* display: flex;
-    align-items: center; */
 	flex-wrap: wrap;
 	animation: shrink 1.5s;
 }
-
-/* simple navbar hover effect start here */
-
-/* .Navbar{
-    display: flex;
-    justify-content: space-evenly;
-    animation: fadeIn 0.5s;
-    padding: 1.5rem;
-    font-weight: 400;
-    font-size: larger;
-
-}
-
-
-
-
-a {
-	color: #fff;
-  position: relative;
-  text-decoration: none;
-}
-
-a::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  border-radius: 4px;
-  background-color: #fff;
-  bottom: 0;
-  left: 0;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform .3s ease-in-out;
-}
-
-a:hover::before {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-
-
-a{
-    text-decoration: none;
-    font-size: larger;
-}
-
-
-li{
-    list-style: none;
-} */
-
-/* simple navbar hover effect end here */
 
 .headingAndDescription {
 	margin-left: 5rem;
@@ -128,6 +140,7 @@ li{
 /* Dropdown Start here*/
 .dropdown {
 	position: relative;
+	display: inline-block;
 	margin: 2rem;
 	width: 300px;
 	height: 60px;
@@ -178,6 +191,7 @@ li{
 	border-radius: 10px;
 	overflow: hidden;
 	display: none;
+	z-index: 5;
 	animation: fadeIn 0.5s;
 }
 
@@ -238,6 +252,9 @@ li{
 	}
 }
 
+hr {
+	margin: 0;
+}
 /* hero animation End here */
 
 /* Jafar End */
@@ -298,12 +315,44 @@ li{
 	margin: 20px auto;
 	padding: 10px;
 	border: none;
+	/* background: rgba(0, 128, 0, 0.347); */
+	/* background: rgba(220, 20, 60, 0.21); */
 	/* appearance: none; */
 	outline: none;
 	border-radius: 5px;
 	/* font-size: 14px; */
 }
+/* /////////////////////////////////////////////////// */
+/* .regInput:focus {
+	outline: 0;
+	border-color: #777;
+}
 
+.form-control.success .regInput {
+	border-color: #2ecc71;
+}
+
+.form-control.error .regInput {
+	border-color: #e74c3c;
+}
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+	display: none;
+}
+
+.form-control.error small {
+	visibility: visible;
+} */
+/* ///////////////////////////////////////// */
 .regBtn {
 	color: #090909;
 	padding: 1em 2em;
@@ -351,26 +400,56 @@ li{
 	transform: scale(6);
 }
 
-/* modal styling*/
-.modal,
-.modal-dialog,
-.modal-body {
-	width: 450px;
-	height: 600px;
-	align-self: center;
-	justify-content: center;
-	align-items: center;
-	/* min-height: 100vh; */
-	font-family: "Jost", sans-serif;
-	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-	overflow: hidden;
-	border-radius: 10px;
-	box-shadow: 5px 20px 50px thistle;
+/* laith */
+#formDiv {
+	border: 2px solid;
+	border-radius: 20px;
+	/* box-shadow: 20px 20px 50px 10px rgba(73, 123, 150, 0.116) inset; */
 }
 
-/* laith */
+.red {
+	color: hsl(0, 78%, 62%);
+	font-weight: bolder;
+}
+
+.orange {
+	color: hsl(34, 97%, 64%);
+	font-weight: 600;
+}
+
+.blue {
+	color: hsl(212, 86%, 64%);
+}
 
 /* duaa */
+
+#cards-container h3 {
+	position: relative;
+	width: fit-content;
+	margin: 0 auto;
+}
+#cards-container h3::after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 1.5px;
+	background-color: #be7384;
+	/* transform: translateX(-50%) scaleX(0); */
+	transform-origin: 50% 50%;
+	transition: all 0.3s;
+}
+#cards-container h3:hover::after {
+	transform: translateX(-50%) scaleX(2);
+	background-color: #734b54;
+}
+#cards-container #cards {
+	overflow-y: scroll;
+	max-height: 70vh;
+}
+
 #cards-container h1:first-of-type {
 	font-weight: 200;
 	color: hsl(234, 12%, 34%);
@@ -418,21 +497,12 @@ li{
 	width: 23px !important;
 }
 
-#cards-container .edit-btn {
-	position: absolute;
-	top: 5.9px;
-	right: 45px;
-	width: 23px !important;
+#cards-container .check-btn {
+	transform: scale(1.8);
+	accent-color: rgb(89, 161, 89);
+	border-radius: 50%;
 }
 
-#cards-container #check-btn img {
-	text-align: end;
-	width: 30px !important;
-}
-
-#cards-container .cyan {
-	border-top: 3.5px solid hsl(180, 62%, 55%);
-}
 #cards-container .red {
 	border-top: 3.5px solid hsl(0, 78%, 62%);
 }
@@ -446,4 +516,35 @@ li{
 #cards-container h2 {
 	color: hsl(234, 12%, 34%);
 	font-weight: 600;
+}
+
+#cards-container .fill {
+	font-size: 14px;
+	font-weight: 200;
+	letter-spacing: 1px;
+	padding: 10px 40px 10px;
+	outline: 0;
+	border: 1px solid black;
+	cursor: pointer;
+	position: relative;
+	background-color: rgba(0, 0, 0, 0);
+	margin: 30px;
+	float: right;
+}
+
+#cards-container .fill::after {
+	content: "";
+	background-color: #ff4c4c;
+	width: 100%;
+	z-index: -1;
+	position: absolute;
+	height: 100%;
+	top: 7px;
+	left: 7px;
+	transition: 0.2s;
+}
+
+#cards-container .fill:hover::after {
+	top: 0px;
+	left: 0px;
 }

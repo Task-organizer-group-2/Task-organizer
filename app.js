@@ -1,268 +1,184 @@
 // emad
 
 // manar
+/// crearte user object
 
-// laith
-function Task(title, description, priority) {
-  this.title = title;
-  this.description = description;
-  this.priority = priority;
-  this.status = "incomplete";
-  this.id = new Date().getTime();
+function User(fName, lName, email, password) {
+	this.fName = fName;
+	this.lName = lName;
+	this.email = email;
+	this.password = btoa(password);
+	//generate random id
+	this.id = new Date().getTime();
+	/// user tasks
 }
 
-let allTasks = [];
+let usersArr = new Array();
 
-let form = document.getElementById("newTaskForm");
+// push when user hit submit sign up
+const signUp = document.getElementById("signup");
+const fName = document.getElementById("fName");
+const lName = document.getElementById("lName");
+const signEmail = document.getElementById("signEmail");
+const signPassword = document.getElementById("signPassword");
+const regForm = document.getElementById("regForm");
+// fire sign-up action
+signUp.addEventListener("click", function (e) {
+	////check validty
+	fName.setCustomValidity("");
+	lName.setCustomValidity("");
+	signEmail.setCustomValidity("");
+	signPassword.setCustomValidity("");
+	if (
+		fName.checkValidity() &&
+		lName.checkValidity() &&
+		signEmail.checkValidity() &&
+		signPassword.checkValidity()
+	) {
+		fName.style.background = "rgba(0, 128, 0, 0.347)";
+		lName.style.background = "rgba(0, 128, 0, 0.347)";
+		signEmail.style.background = "rgba(0, 128, 0, 0.347)";
+		signPassword.style.background = "rgba(0, 128, 0, 0.347)";
 
-function render(event) {
-  event.preventDefault();
+		e.preventDefault();
+		// get data into array
 
-  let title = event.target.Title.value;
-  let description = event.target.Description.value;
-  let priority = event.target.Radio.value;
+		usersArr.push(
+			new User(fName.value, lName.value, signEmail.value, signPassword.value)
+		);
+		console.log(usersArr);
+		// save array into local
+		localStorage.setItem("users", JSON.stringify(usersArr));
+		//set current user
+		sessionStorage.setItem(
+			"“currentloggedin”",
+			JSON.stringify(usersArr[usersArr.length - 1])
+		);
 
-  let taskCard = new Task(title, description, priority);
-  allTasks.push(taskCard);
-  saveToLocal();
-
-  addCard(taskCard);
-  document.getElementById("newTaskForm").reset();
-}
-
-form.addEventListener("submit", render);
-
-let userName = "laith"; // example for testing, actual username is from manar
-
-function saveToLocal() {
-  let stringArr = JSON.stringify(allTasks);
-  localStorage.setItem(userName, stringArr);
-}
-function getFromLocal() {
-  let jsonArr = localStorage.getItem(userName);
-  let objArr = JSON.parse(jsonArr);
-
-  if (objArr !== null) {
-    objArr.forEach((element) => {
-      allTasks = objArr;
-      addCard(element);
-    });
-  }
-}
-getFromLocal();
-// duaa
-let cardRow = document.getElementById("card-row");
-// bootstrap tooltip
-let tooltipTriggerList = [].slice.call(
-	document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-	return new bootstrap.Tooltip(tooltipTriggerEl);
+		//open task page
+		window.open("./taskpage.html", _self);
+	} else {
+		e.preventDefault();
+		return false;
+	}
 });
 
-// addCard function to add cards from form
-let cardContainer = document.getElementById("card-container");
+//validation messege
+fName.addEventListener("invalid", () => {
+	fName.style.background = "rgba(220, 20, 60, 0.21)";
+	if (fName.value === "") {
+		fName.setCustomValidity("Enter your First Name!");
+	} else {
+		fName.setCustomValidity(
+			"First Name can only contain numbers and upper and lowercase letters . Try again!"
+		);
+	}
+	fName.reportValidity();
+});
 
-function addCard(task) {
-	const taskCard = document.createElement("div");
-	taskCard.classList.add("col-sm-4");
+lName.addEventListener("invalid", () => {
+	lName.style.background = "rgba(220, 20, 60, 0.21)";
+	if (lName.value === "") {
+		lName.setCustomValidity("Enter your last Name!");
+	} else {
+		lName.setCustomValidity(
+			"last Name can only contain numbers and  upper and lowercase letters. Try again!"
+		);
+	}
+	lName.reportValidity();
+});
 
-	taskCard.innerHTML = `
-    <div class="box ${colorClass(task.priority)}" data-bs-toggle="tooltip"
-    data-bs-placement="top"
-    title="${task.priority}">
-    <a href="" class="delete-btn" style="color: black" 
-    >
-    <img src="./duaa-images/trash-outline.svg" id= "${task.id}" name="id">
-     </a>
-    <a href="" class="edit-btn" style="color: black"
-        ><img src="./duaa-images/create-outline.svg"></a>
-    <h2>${task.title}</h2>
-    <p>${task.description}</p>
-    <a
-        href=""
-        id="check-btn"
-        style="color: rgba(50, 85, 51, 0.321)"
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
-            class="bi bi-check-circle-fill"
-            viewBox="0 0 16 16"
-        >
-            <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
-            />
-        </svg>
-    </a>
-    </div>
-  
-    `;
+signEmail.addEventListener("invalid", () => {
+	signEmail.style.background = "rgba(220, 20, 60, 0.21)";
+	if (signEmail.value === "") {
+		signEmail.setCustomValidity("Enter your Email!");
+	} else {
+		signEmail.setCustomValidity("Invalid Email. Try again!");
+	}
+	signEmail.reportValidity();
+});
 
-	document.getElementById("card-row").appendChild(taskCard);
+signPassword.addEventListener("invalid", () => {
+	signPassword.style.background = "rgba(220, 20, 60, 0.21)";
+	if (signPassword.value === "") {
+		signPassword.setCustomValidity("Enter your Password!");
+	} else if (signPassword.value.length < 6) {
+		signPassword.setCustomValidity("Password must be at least 6 characters");
+	}
+	signPassword.reportValidity();
+});
+//get current user from sussion
+// define user tasks basd on current
+// push when user hit submit log in
 
-	// function to delete each element
-	let deleteBtn = document.querySelectorAll(".delete-btn");
-	deleteBtn.forEach((ele) => {
-		ele.addEventListener("click", (e) => {
-			e.preventDefault();
+const logIn = document.getElementById("login");
+const logEmail = document.getElementById("logEmail");
+const logPassword = document.getElementById("logPassword");
+
+logIn.addEventListener("click", function (e) {
+	logEmail.setCustomValidity("");
+	logPassword.setCustomValidity("");
+	if (logEmail.checkValidity() && logPassword.checkValidity()) {
+		logEmail.style.background = "rgba(0, 128, 0, 0.347)";
+		logPassword.style.background = "rgba(0, 128, 0, 0.347)";
+		e.preventDefault();
+		getFromLocalReg();
+		window.open("./taskpage.html", _self);
+	} else {
+		e.preventDefault();
+		return false;
+	}
+});
+//get local
+// ask if insert value == any
+// get user into tasks with its info
+//else tell no
+
+function getFromLocalReg() {
+	let jsonArr = localStorage.getItem("users");
+	let arr = JSON.parse(jsonArr);
+	usersArr = arr;
+	console.log(logEmail.value);
+	console.log(usersArr);
+
+	usersArr.forEach((e) => {
+		if (e.email == logEmail.value) {
 			console.log(e);
-			let deleteId = e.target.id;
-			console.log(deleteId);
-			console.log(allTasks);
-			allTasks = allTasks.filter((ele) => {
-				return ele.id == deleteId ? false : true;
-			});
-			console.log(allTasks);
-			saveToLocal();
-			// localStorage.setItem(userName, JSON.stringify(allTasks));
-			cardRow.innerHTML = "";
-			getFromLocal();
-			// let jsonArr = localStorage.getItem(userName);
-			// let arr = JSON.parse(jsonArr);
-			// allTasks = arr;
-			// arr.forEach((ele) => {
-			// 	addCard(ele);
-			// });
-		});
+			// log in sussion and go to tasks
+			sessionStorage.setItem("“currentloggedin”", JSON.stringify(e));
+		}
 	});
 }
-// function to change top border color of cards based on priority
-function colorClass(priority) {
-	switch (priority) {
-		case "Critical":
-			return "red";
-		case "Normal":
-			return "orange";
-		case "Low priority":
-			return "blue";
+
+/////// log in validtion
+logEmail.addEventListener("invalid", () => {
+	logEmail.style.background = "rgba(220, 20, 60, 0.21)";
+	if (logEmail.value === "") {
+		logEmail.setCustomValidity("Enter your Email!");
+	} else {
+		logEmail.setCustomValidity("Invalid Email. Try again!");
+	}
+	logEmail.reportValidity();
+});
+
+logPassword.addEventListener("invalid", () => {
+	logPassword.style.background = "rgba(220, 20, 60, 0.21)";
+	if (logPassword.value === "") {
+		logPassword.setCustomValidity("Enter your Password!");
+	} else if (logPassword.value.length < 6) {
+		logPassword.setCustomValidity("Password must be at least 6 characters");
+	}
+	logPassword.reportValidity();
+});
+
+// global get local to display old array users
+function getFromLocalUsers() {
+	let jsonArr = localStorage.getItem("users");
+	let arr = JSON.parse(jsonArr);
+
+	if (arr != null) {
+		usersArr = arr;
 	}
 }
-
-// const editBtn = document.querySelector(".edit-btn");
-
-// function to delete all cards
-
-// function to switch between completed and incomplete
-
-// jafar
-
-//when click on dropdown data show it instead of the placeholder "filter"
-
-function show(anything) {
-  document.querySelector(".textBox").value = anything;
-}
-
-//toggle to class active once we clicked on the dropdown
-
-let dropdown = document.querySelector(".dropdown");
-dropdown.onclick = function () {
-  dropdown.classList.toggle("active");
-};
-
-document.addEventListener("click", (e) => {
-  const isdropdown = e.target.matches("[data-dropdpwn-button]");
-  if (!isdropdown && e.target.closest("[data-dropdown]") != null) return "";
-});
-
-let arr = [
-  { Title: "First Title", status: "incomplete", priority: "low priority" },
-  { Title: "second Title", status: "completed", priority: "critical" },
-  {
-    Title: "Third Title",
-    status: "completed",
-    priority: "incomplete",
-    priority: "Medium",
-  },
-];
-let inComplete = document.getElementById("InCompleteDropdown");
-
-inComplete.addEventListener("click", (event) => {
-  event.preventDefault();
-  arr.forEach((card) => {
-    console.log(card);
-    const visible = card.status.toLowerCase() === "incomplete";
-    console.log(visible);
-    if (visible != true) {
-      console.log("hidden");
-      // card.element.style.display = "none";
-    } else {
-      // card.element.style.display = "block";
-      console.log("not hidden");
-    }
-  });
-});
-
-let completedDropdown = document.getElementById("completedDropdown");
-
-completedDropdown.addEventListener("click", (event) => {
-  event.preventDefault();
-  arr.forEach((card) => {
-    console.log(card);
-    const visible = card.status.toLowerCase() === "completed";
-    console.log(visible);
-    if (visible != true) {
-      console.log("hidden");
-      // card.element.style.display = "none";
-    } else {
-      // card.element.style.display = "block";
-      console.log("not hidden");
-    }
-  });
-});
-
-let CriticalDropdown = document.getElementById("CriticalDropdown");
-
-CriticalDropdown.addEventListener("click", (event) => {
-  event.preventDefault();
-  arr.forEach((card) => {
-    console.log(card);
-    const visible = card.priority.toLowerCase() === "critical";
-    console.log(visible);
-    if (visible != true) {
-      console.log("hidden");
-      // card.element.style.display = "none";
-    } else {
-      // card.element.style.display = "block";
-      console.log("not hidden");
-    }
-  });
-});
-
-let MediumDropdown = document.getElementById("MediumDropdown");
-
-MediumDropdown.addEventListener("click", (event) => {
-  event.preventDefault();
-  arr.forEach((card) => {
-    console.log(card);
-    const visible = card.priority.toLowerCase() === "medium";
-    console.log(visible);
-    if (visible != true) {
-      console.log("hidden");
-      // card.element.style.display = "none";
-    } else {
-      // card.element.style.display = "block";
-      console.log("not hidden");
-    }
-  });
-});
-
-let LowPrioritDropdown = document.getElementById("LowPrioritDropdown");
-
-LowPrioritDropdown.addEventListener("click", (event) => {
-  event.preventDefault();
-  arr.forEach((card) => {
-    console.log(card);
-    const visible = card.priority.toLowerCase() === "low priority";
-    console.log(visible);
-    if (visible != true) {
-      console.log("hidden");
-      // card.element.style.display = "none";
-    } else {
-      // card.element.style.display = "block";
-      console.log("not hidden");
-    }
-  });
-});
+// on load get all data
+getFromLocalUsers();
