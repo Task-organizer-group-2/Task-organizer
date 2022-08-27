@@ -15,6 +15,7 @@
 	--text-color: black;
 }
 /* end colours */
+
 body.dark nav {
 	/* border: 1px solid rgb(247, 235, 235); */
 	box-shadow: 0 0 16px 0 white;
@@ -291,6 +292,7 @@ body.dark .showAll {
 	/* color: white; */
 	background-color: rgba(191, 187, 187, 0.303);
 }
+
 /* Dropdown Start here*/
 .dropdown {
 	position: relative;
