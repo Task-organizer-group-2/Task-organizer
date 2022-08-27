@@ -16,20 +16,27 @@
 }
 /* end colours */
 body.dark nav {
-	border: 2px solid white;
+	/* border: 1px solid rgb(247, 235, 235); */
+	box-shadow: 0 0 16px 0 white;
+	background-color: #0107183c;
+	/* background-color: #222; */
 }
 body.dark footer {
-	border: 2px solid white;
+	/* border: 1px solid rgb(247, 235, 235); */
+	background-color: #0107183c;
+	box-shadow: 0 0 16px 0 white;
 }
 
 body {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	color: black;
+	height: 100%;
+	/* position: relative; */
 }
 
 body.dark {
-	background-color: black;
-	color: white;
+	background-color: #292c35;
+	color: rgb(247, 235, 235);
 }
 
 li,
@@ -53,6 +60,7 @@ nav {
 	width: 100%;
 	/* background-color: var(--nav-color); */
 	z-index: 100;
+	box-shadow: 0 0 16px 0 rgba(17, 16, 16, 0.826);
 }
 
 nav .nav-bar {
@@ -177,11 +185,15 @@ footer {
 	width: 100%;
 	height: 100%;
 	padding-top: 10px;
+	padding-bottom: 10px;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
 	text-align: center;
 	justify-content: space-between;
+	box-shadow: 0 0 16px 0 rgba(17, 16, 16, 0.826);
+	/* position: absolute;
+	bottom: 0; */
 }
 .logoright {
 	margin-right: 50px;
@@ -230,6 +242,11 @@ body.dark .logout a:hover {
 	border-radius: 20px;
 	/* box-shadow: 20px 20px 50px 10px rgba(73, 123, 150, 0.116) inset; */
 	position: relative;
+
+	width: 85%;
+}
+body.dark #formDiv {
+	background-color: #3a3e49;
 }
 #label {
 	position: absolute;
@@ -242,7 +259,9 @@ body.dark .logout a:hover {
 	text-align: center;
 	border-radius: 10px;
 }
-
+body.dark #label {
+	color: #292c35;
+}
 .red {
 	color: hsl(0, 78%, 62%);
 	font-weight: bolder;
@@ -258,15 +277,19 @@ body.dark .logout a:hover {
 }
 
 .showAll {
-	border-radius: 8px;
+	/* border-radius: 8px; */
 	background: transparent;
-	border-color: grey;
-	border-width: 3px;
+	border: none;
+	border-bottom: 1.5px solid grey;
 }
-
-.showAll:hover {
-	background-color: grey;
+body.dark .showAll {
 	color: white;
+}
+.showAll:hover {
+	border-color: rgb(29, 27, 27);
+	/* box-shadow: -1px 2px 2px grey; */
+	/* color: white; */
+	background-color: rgba(191, 187, 187, 0.303);
 }
 /* Dropdown Start here*/
 .dropdown {
@@ -349,13 +372,31 @@ body.dark .logout a:hover {
 }
 
 /* duaa */
+#main-task {
+	position: relative;
+}
+#add-btn {
+	height: 45px;
+	width: 45px;
+	font-size: 0.8rem;
+	border: none;
+	border-radius: 50%;
+	padding: 0;
+	text-align: center;
+	background-color: rgb(151, 179, 170);
+}
+body.dark #add-btn {
+	background-color: rgba(151, 179, 170, 0.484);
+}
 
-#cards-container h3 {
+#main-task h3 {
 	position: relative;
 	width: fit-content;
-	margin: 0 auto;
+	margin: 50px auto;
+	font-size: 2.5rem;
 }
-#cards-container h3::after {
+
+#main-task h3::after {
 	content: "";
 	position: absolute;
 	bottom: -1px;
@@ -368,7 +409,8 @@ body.dark .logout a:hover {
 	transform-origin: 50% 50%;
 	transition: all 0.3s;
 }
-#cards-container h3:hover::after {
+
+#main-task h3:hover::after {
 	transform: translateX(-50%) scaleX(2);
 	background-color: #734b54;
 }
@@ -386,11 +428,11 @@ body.dark .logout a:hover {
 	color: hsl(234, 12%, 34%);
 }
 
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
 	#cards-container h1 {
-		font-size: 1.5rem;
+		font-size: 1rem;
 	}
-}
+} */
 
 #cards-container .header {
 	text-align: center;
@@ -408,6 +450,10 @@ body.dark .logout a:hover {
 #cards-container .box p {
 	color: hsl(229, 6%, 66%);
 }
+body.dark #cards-container .box p,
+body.dark #cards-container .box h2 {
+	color: #010718;
+}
 
 #cards-container .box {
 	border-radius: 5px;
@@ -417,6 +463,12 @@ body.dark .logout a:hover {
 	position: relative;
 	height: fit-content;
 }
+
+body.dark #cards-container .box {
+	background-color: rgba(240, 230, 230, 0.271);
+	box-shadow: none;
+}
+
 #cards-container .delete-btn img {
 	position: absolute;
 	top: 8px;
@@ -452,7 +504,7 @@ body.dark .logout a:hover {
 	font-size: 14px;
 	font-weight: 200;
 	letter-spacing: 1px;
-	padding: 10px 40px 10px;
+	padding: 5px 20px 5px;
 	outline: 0;
 	border: 1px solid black;
 	cursor: pointer;
@@ -479,7 +531,31 @@ body.dark .logout a:hover {
 	left: 0px;
 }
 
+body.dark #cards-container .fill {
+	color: #ffffff;
+}
+body.dark #cards-container .fill::after {
+	content: "";
+	background-color: #ff4c4ca5;
+	width: 100%;
+	z-index: -1;
+	position: absolute;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	transition: 0.2s;
+}
+
 /* media emad */
+@media (max-width: 920px) and (min-height: 1300px) {
+	.box {
+		width: 97%;
+	}
+	.col-sm-4 {
+		padding: 0 !important;
+	}
+}
+
 @media (max-width: 790px) {
 	nav .nav-bar .sidebarOpen {
 		display: block;
@@ -487,7 +563,9 @@ body.dark .logout a:hover {
 	footer {
 		display: block;
 	}
-
+	#cards-container h1 {
+		font-size: 0.5rem;
+	}
 	.menu {
 		position: fixed;
 		height: 100%;
@@ -533,6 +611,28 @@ body.dark .logout a:hover {
 		display: block;
 		margin-top: 20px;
 	}
+	#formDiv {
+		flex-wrap: wrap;
+	}
+	.dropdown {
+		margin: 0.1rem !important;
+		width: 120px;
+		font-size: 0.6rem;
+		padding-left: 5px !important;
+	}
+
+	#filterDiv {
+		padding: 0 !important;
+		padding-left: 30px !important;
+		/* text-align: center; */
+	}
+	.showAll {
+		font-size: 0.7rem;
+		margin-left: 10px !important;
+	}
+	#cards-container {
+		padding-left: 0 !important;
+	}
 }
 @media (max-width: 500px) {
 	footer {
@@ -556,6 +656,12 @@ body.dark .logout a:hover {
 	header {
 		width: 100%;
 	}
+	#formDiv {
+		flex-wrap: wrap;
+	}
+	.showAll {
+		margin-left: 30px;
+	}
 }
 @media (max-width: 420px) {
 	footer {
@@ -578,7 +684,16 @@ body.dark .logout a:hover {
 		margin-left: 30px;
 	}
 	#cards-container h1 {
-		font-size: 1.5rem;
+		font-size: 1rem;
 	} /* duaa*/
+
+	#formDiv {
+		flex-wrap: wrap;
+		font-size: 14px;
+	}
+	.showAll {
+		margin-left: 30px;
+	}
 }
+
 /* end media emad */
