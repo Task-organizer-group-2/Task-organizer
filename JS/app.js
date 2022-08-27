@@ -96,17 +96,21 @@ regForm.addEventListener("submit", function (e) {
 		lName.style.background = "rgba(0, 128, 0, 0.347)";
 		signEmail.style.background = "rgba(0, 128, 0, 0.347)";
 		signPassword.style.background = "rgba(0, 128, 0, 0.347)";
-
+		let v = false;
 		e.preventDefault();
 		// get data into array
 		if (arr != null) {
 			arr.forEach((user) => {
 				if (signEmail.value != user.email) {
-					signUpAction();
-				} else {
-					alert("This email is already registered!");
+					v = true;
 				}
 			});
+
+			if (v) {
+				signUpAction();
+			} else {
+				alert("This email is already registered!");
+			}
 		} else {
 			signUpAction();
 		}
@@ -141,27 +145,33 @@ const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (e) {
 	e.preventDefault();
-
+	let v = false;
+	let correctUser;
 	if (arr) {
-		arr.forEach((user) => {
+		for (let i = 0; i < arr.length; i++) {
 			if (
-				user.email == logEmail.value &&
-				atob(user.password) == logPassword.value
+				arr[i].email == logEmail.value &&
+				atob(arr[i].password) == logPassword.value
 			) {
-				console.log(user.email);
-				logEmail.style.background = "rgba(0, 128, 0, 0.347)";
-				logPassword.style.background = "rgba(0, 128, 0, 0.347)";
-				localStorage.setItem("currentloggedin", JSON.stringify(user));
-
-				window.location = "./taskpage.html";
-
-				alert(`Welcome ${user.fName} ${user.lName}`);
-			} else {
-				alert("Wrong email or password");
+				v = true;
+				correctUser = arr[i];
 			}
-		});
+		}
 	} else {
 		alert("This email is not registered");
+	}
+
+	console.log(v);
+	if (v) {
+		logEmail.style.background = "rgba(0, 128, 0, 0.347)";
+		logPassword.style.background = "rgba(0, 128, 0, 0.347)";
+		localStorage.setItem("currentloggedin", JSON.stringify(correctUser));
+
+		window.location = "./taskpage.html";
+
+		alert(`Welcome ${correctUser.fName} ${correctUser.lName}`);
+	} else {
+		alert("Wrong email or password");
 	}
 });
 

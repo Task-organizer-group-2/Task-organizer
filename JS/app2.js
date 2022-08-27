@@ -224,10 +224,6 @@ function colorClass(priority) {
 
 console.log(allCards);
 
-function show1(firstDropdownvalue) {
-	document.querySelector(".textBox1").value = firstDropdownvalue;
-}
-
 let statusCondition = null;
 let priorityCondition = null;
 function getStatus(sel) {
@@ -272,12 +268,6 @@ function displayCards(filteredArray) {
 	console.log(filteredArray);
 }
 
-function show2(secondDropdownvalue) {
-	document.getElementById("TextBox2").value = secondDropdownvalue;
-}
-
-let filteredArray = [];
-
 function ShowAllCards() {
 	allCards.forEach((ele) => {
 		location.reload();
@@ -286,18 +276,3 @@ function ShowAllCards() {
 		// document.getElementById("PriorityID").value="Filter by Priority...";
 	});
 }
-
-sidebarOpen.addEventListener("click", () => {
-	nav.classList.add("active");
-});
-
-body.addEventListener("click", (e) => {
-	let clickedElm = e.target;
-
-	if (
-		!clickedElm.classList.contains("sidebarOpen") &&
-		!clickedElm.classList.contains("menu")
-	) {
-		nav.classList.remove("active");
-	}
-});
