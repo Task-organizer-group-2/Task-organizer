@@ -60,8 +60,10 @@ function toggle() {
 function undoToggle() {
 	const blur = document.getElementById("blur");
 	blur.classList.toggle("disabled");
+	blur.classList.remove("active");
 	const popUp = document.getElementById("popup");
 	popUp.classList.toggle("disabled");
+	popUp.classList.remove("active");
 }
 
 /// crearte user object
@@ -85,33 +87,9 @@ const lName = document.getElementById("lName");
 const signEmail = document.getElementById("signEmail");
 const signPassword = document.getElementById("signPassword");
 const regForm = document.getElementById("regForm");
+
+// --------------------------------------------------------------------------
 // fire sign-up action
-
-// regex checker
-const inputs = document.querySelectorAll(".regex");
-
-const patterns = {
-	email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
-	fName: /^[a-z\d]{3,12}$/i,
-	lName: /^[a-z\d]{3,12}$/i,
-	password: /^[\w@-]{8,20}$/,
-};
-
-function validate(field, regex) {
-	if (regex.test(field.value)) {
-		field.classList.add("valid");
-	} else {
-		field.classList.add("invalid");
-	}
-}
-
-inputs.forEach((input) => {
-	input.addEventListener("keyup", (e) => {
-		// console.log(e.target.attributes.name.value)
-		validate(e.target, patterns[e.target.attributes.name.value]);
-	});
-});
-
 let jsonArr = localStorage.getItem("users");
 let arr = JSON.parse(jsonArr);
 
@@ -135,6 +113,9 @@ regForm.addEventListener("submit", function (e) {
 		} else {
 			signUpAction();
 		}
+	} else {
+		e.preventDefault();
+		return false;
 	}
 });
 
@@ -165,7 +146,7 @@ const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", function (e) {
 	e.preventDefault();
 
-	if (arr != null) {
+	if (arr) {
 		arr.forEach((user) => {
 			if (
 				user.email == logEmail.value &&
@@ -183,6 +164,8 @@ loginForm.addEventListener("submit", function (e) {
 				alert("Wrong email or password");
 			}
 		});
+	} else {
+		alert("This email is not registered");
 	}
 });
 
