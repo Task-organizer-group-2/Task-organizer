@@ -5,8 +5,6 @@ window.addEventListener("load", (e) => {
 	}
 });
 
-// // emad
-
 // emad js
 const body = document.querySelector("body"),
 	nav = document.querySelector("nav"),
@@ -32,9 +30,8 @@ modeToggle.addEventListener("click", () => {
 	}
 });
 
-//   js code to toggle sidebar
-
 // end emad js //
+
 // manar
 
 // popoup form
@@ -134,9 +131,8 @@ function signUpAction() {
 	window.location = "./taskpage.html";
 	alert(`Welcome ${fName.value} ${lName.value}`);
 }
-//get current user from sussion
-// define user tasks basd on current
-// push when user hit submit log in
+
+// ---------------------------------------------------
 
 const logIn = document.getElementById("login");
 const logEmail = document.getElementById("logEmail");

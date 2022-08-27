@@ -40,6 +40,8 @@ body.addEventListener("click", (e) => {
 });
 // end emad js //
 
+// logout button --------------------------
+
 let logoutBtn = document.getElementById("logout-btn");
 logoutBtn.addEventListener("click", (e) => {
 	window.location = "./index.html";
@@ -48,6 +50,8 @@ logoutBtn.addEventListener("click", (e) => {
 });
 
 // laith
+// add tasks by form--------------------------------------
+
 function Task(title, description, priority) {
 	this.title = title;
 	this.description = description;
@@ -107,6 +111,7 @@ let navName = document.getElementById("navName");
 navName.textContent = `Welcome ${userName}`;
 
 // duaa
+// display cards ---------------------------------------------------
 
 let cardRow = document.getElementById("card-row");
 
@@ -125,7 +130,7 @@ function addCard(task) {
     <div class="box ${colorClass(task.priority)}" >
     <a href="" class="delete-btn" style="color: black" 
     >
-    <img src="./duaa-images/trash-outline.svg" id= "${task.id}" name="id">
+    <img src="../images/trash-outline.svg" id= "${task.id}" name="id">
      </a>
     <h2>${task.title}</h2>
     <p>${task.description}</p>
@@ -214,19 +219,8 @@ function colorClass(priority) {
 	}
 }
 
-// function
-function setCheckClass(check) {
-	switch (check) {
-		case "completed":
-			return "checked";
-		case "incomplete":
-			return "unchecked";
-	}
-}
-
 // jafar
-
-// jafar
+// filter cards --------------------------------------------------
 
 console.log(allCards);
 
