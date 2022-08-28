@@ -165,7 +165,7 @@ function addCard(task) {
 		ele.addEventListener("click", (e) => {
 			e.preventDefault();
 			let editId = e.target.id;
-			allTasks.forEach((ele) => {
+			allTasks = allTasks.filter((ele) => {
 				if (ele.id3 == editId) {
 					editTitle.value = ele.title;
 					editDescription.value = ele.description;
@@ -174,8 +174,15 @@ function addCard(task) {
 							element.checked = true;
 						}
 					});
-					editForm.addEventListener("submit", (e) => {
-						e.preventDefault();
+				}
+
+				return ele;
+			});
+
+			editForm.addEventListener("submit", (e) => {
+				e.preventDefault();
+				allTasks = allTasks.filter((ele) => {
+					if (ele.id3 == editId) {
 						let title = e.target.Title.value;
 						let description = e.target.Description.value;
 						let priority = e.target.Radio.value;
@@ -183,11 +190,13 @@ function addCard(task) {
 						ele.title = title;
 						ele.description = description;
 						ele.priority = priority;
-						saveToLocal();
-						cardRow.innerHTML = "";
-						getFromLocal();
-					});
-				}
+					}
+					return ele;
+				});
+
+				saveToLocal();
+				cardRow.innerHTML = "";
+				getFromLocal();
 			});
 		});
 	});
