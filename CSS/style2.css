@@ -450,6 +450,7 @@ body.dark #add-btn {
 
 #cards-container .box p {
 	color: hsl(229, 6%, 66%);
+	overflow-wrap: break-word;
 }
 body.dark #cards-container .box p,
 body.dark #cards-container .box h2 {
