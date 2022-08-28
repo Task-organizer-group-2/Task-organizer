@@ -181,22 +181,23 @@ function addCard(task) {
 
 			editForm.addEventListener("submit", (e) => {
 				e.preventDefault();
-				allTasks = allTasks.filter((ele) => {
-					if (ele.id3 == editId) {
+				allTasks = allTasks.filter((element) => {
+					if (element.id3 == editId) {
 						let title = e.target.Title.value;
 						let description = e.target.Description.value;
 						let priority = e.target.Radio.value;
 
-						ele.title = title;
-						ele.description = description;
-						ele.priority = priority;
+						element.title = title;
+						element.description = description;
+						element.priority = priority;
 					}
-					return ele;
+					return element;
 				});
 
 				saveToLocal();
 				cardRow.innerHTML = "";
 				getFromLocal();
+				location.reload();
 			});
 		});
 	});
