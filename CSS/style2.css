@@ -293,6 +293,32 @@ body.dark .showAll {
 	background-color: rgba(191, 187, 187, 0.303);
 }
 
+/* /// give the user the ability to change the text color / */
+[type="color"] {
+	appearance: none;
+	padding: 0;
+	/* padding-top: 5px;  */
+	width: 15px;
+	height: 15px;
+	border: none;
+}
+
+[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+.color-picker {
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	background: #f8f9f9;
+	width: 250px;
+}
+
 /* Dropdown Start here*/
 .dropdown {
 	position: relative;
@@ -365,13 +391,6 @@ body.dark .showAll {
 	display: block;
 }
 
-.dropdown-header {
-	text-align: center;
-	font-size: large;
-	font-weight: bolder;
-	padding: 1rem;
-	background-color: rgb(255, 255, 255);
-}
 /* duaa */
 #main-task {
 	position: relative;
@@ -477,15 +496,21 @@ body.dark #cards-container .box {
 	right: 10px;
 	width: 23px !important;
 }
+#cards-container .edit-btn img {
+	position: absolute;
+	top: 8px;
+	right: 35px;
+	width: 23px !important;
+}
 
 #cards-container .check-btn {
 	transform: scale(1.8);
 	accent-color: rgb(89, 161, 89);
 	border-radius: 50%;
 }
-#cards-container .check-btn:checked {
+/* #cards-container .check-btn:checked {
 	pointer-events: none;
-}
+} */
 
 #cards-container .red {
 	border-top: 3.5px solid hsl(0, 78%, 62%);
@@ -511,41 +536,13 @@ body.dark #cards-container .box {
 	border: 1px solid black;
 	cursor: pointer;
 	position: relative;
-	background-color: rgba(0, 0, 0, 0);
+	background-color: #ff4c4c;
 	margin: 30px;
 	float: right;
 }
 
-#cards-container .fill::after {
-	content: "";
-	background-color: #ff4c4c;
-	width: 100%;
-	z-index: -1;
-	position: absolute;
-	height: 100%;
-	top: 7px;
-	left: 7px;
-	transition: 0.2s;
-}
-
-#cards-container .fill:hover::after {
-	top: 0px;
-	left: 0px;
-}
-
 body.dark #cards-container .fill {
 	color: #ffffff;
-}
-body.dark #cards-container .fill::after {
-	content: "";
-	background-color: #ff4c4ca5;
-	width: 100%;
-	z-index: -1;
-	position: absolute;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	transition: 0.2s;
 }
 
 /* media emad */

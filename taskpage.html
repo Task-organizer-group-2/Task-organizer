@@ -133,11 +133,114 @@
 								>Low priority</label
 							>
 						</div>
+						<!-- /// give the user the ability to change the text color -->
+						<!-- <div class="color-picker">
+							<label for="colorPicker">Choose Your Text Color </label>
+							<input type="color" value="#1fc8de" id="colorPicker" />
+						</div> -->
 					</div>
 					<br />
 					<button type="submit" class="btn btn-primary">Save</button>
 				</form>
 				<br />
+			</div>
+
+			<div
+				class="modal fade"
+				id="exampleModal"
+				tabindex="-1"
+				aria-labelledby="exampleModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div id="formDiv-edit" class="container">
+							<br />
+							<!-- <div id="label" >Create new task</div> -->
+							<div class="modal-body">
+								<form action="" id="newTaskForm-edit" class="container">
+									<div class="row">
+										<div class="col-6">
+											<label for="title-edit" class="form-label"
+												>Task title</label
+											>
+											<input
+												type="text"
+												class="form-control"
+												id="title-edit"
+												name="Title"
+												placeholder="Write a title for your task"
+												required
+											/>
+										</div>
+										<div class="col-6">
+											<label for="description-edit" class="form-label"
+												>Task description</label
+											>
+											<input
+												type="text"
+												class="form-control"
+												id="description-edit"
+												name="Description"
+												placeholder="Enter a descriptionc(optional)"
+											/>
+										</div>
+									</div>
+									<br />
+									<div>
+										<div class="form-check form-check-inline">
+											<input
+												class="form-check-input"
+												type="radio"
+												name="Radio"
+												value="Critical"
+												id="Radio1-edit"
+												required
+											/>
+											<label class="form-check-label red" for="Radio1-edit"
+												>Critical</label
+											>
+										</div>
+										<div class="form-check form-check-inline">
+											<input
+												class="form-check-input"
+												type="radio"
+												name="Radio"
+												value="Normal"
+												id="Radio2-edit"
+												required
+											/>
+											<label class="form-check-label orange" for="Radio2-edit"
+												>Normal</label
+											>
+										</div>
+										<div class="form-check form-check-inline">
+											<input
+												class="form-check-input"
+												type="radio"
+												name="Radio"
+												value="Low priority"
+												id="Radio3-edit"
+											/>
+											<label class="form-check-label blue" for="Radio3-edit"
+												>Low priority</label
+											>
+										</div>
+									</div>
+									<br />
+									<button
+										type="submit"
+										class="btn btn-primary"
+										data-bs-dismiss="modal"
+									>
+										Save
+									</button>
+								</form>
+							</div>
+							<br />
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- laith - end - form -->
@@ -155,16 +258,17 @@
 						aria-label="Default select example"
 						onChange="getStatus(this);"
 					>
-						<option value="1">completed</option>
-						<option value="2">incomplete</option>
 						<option
 							class="dropdown-header"
 							value="Filter by Status..."
 							disabled
 							selected
+							hidden
 						>
 							Filter by Status...
 						</option>
+						<option value="1">completed</option>
+						<option value="2">incomplete</option>
 					</select>
 
 					<select
@@ -173,17 +277,18 @@
 						aria-label="Default select example"
 						onChange="getPriority(this);"
 					>
-						<option value="1">Critical</option>
-						<option value="2">Normal</option>
-						<option value="3">Low priority</option>
 						<option
 							class="dropdown-header"
 							value="Filter by Priority..."
 							disabled
 							selected
+							hidden
 						>
 							Filter by Priority...
 						</option>
+						<option value="1">Critical</option>
+						<option value="2">Normal</option>
+						<option value="3">Low priority</option>
 					</select>
 					<span
 						><button class="showAll" onclick="ShowAllCards();">
@@ -211,9 +316,6 @@
 			<div class="textleft">
 				<h3>Taskat, get the work done!</h3>
 				<br />
-				Our team: <br />
-				Laith Samamah, Manar Olimat, Jafar Thawahrah,<br />
-				Emad Hashash, Dua'a Nawwas
 			</div>
 			<div class="logoright">
 				<span class="logo2 navLogo"

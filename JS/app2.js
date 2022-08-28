@@ -59,6 +59,9 @@ function Task(title, description, priority) {
 	this.status = "incomplete";
 	this.id = new Date().getTime();
 	this.id2 = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+	this.id3 = Math.floor((1 + Math.random()) * 0x10000)
+		.toString(16)
+		.substring(1);
 }
 
 let allTasks = [];
@@ -72,6 +75,9 @@ function render(event) {
 	let title = event.target.Title.value;
 	let description = event.target.Description.value;
 	let priority = event.target.Radio.value;
+
+	// let descColor = document.getElementById("colorPicker").value;
+	// console.log(descColor);
 
 	let taskCard = new Task(title, description, priority);
 	allTasks.push(taskCard);
@@ -121,10 +127,10 @@ let cardContainer = document.getElementById("card-container");
 function addCard(task) {
 	const taskCard = document.createElement("div");
 	taskCard.classList.add("col-sm-4");
-	let x = "";
+	let isChecked = "";
 
 	if (task.status == "completed") {
-		x = "checked";
+		isChecked = "checked";
 	}
 	taskCard.innerHTML = `
     <div class="box ${colorClass(task.priority)}" >
@@ -132,9 +138,15 @@ function addCard(task) {
     >
     <img src="./images/trash-outline.svg" id= "${task.id}" name="id">
      </a>
+    <a href="" class="edit-btn" style="color: black" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+    >
+    <img src="./images/create-outline.svg" id= "${task.id3}" name="id">
+     </a>
     <h2>${task.title}</h2>
     <p>${task.description}</p>
-	<input type="checkbox" name="checkbox" class="check-btn" id="${task.id2}" ${x}>
+	<input type="checkbox" name="checkbox" class="check-btn" id="${
+		task.id2
+	}" ${isChecked}>
     </div>
   
     `;
@@ -142,6 +154,43 @@ function addCard(task) {
 	document.getElementById("card-row").appendChild(taskCard);
 	task.element = taskCard;
 	allCards.push(task);
+
+	// function to edit cards
+	const editTitle = document.getElementById("title-edit");
+	const editDescription = document.getElementById("description-edit");
+	const editForm = document.getElementById("newTaskForm-edit");
+	const editPriority = document.querySelectorAll("input[name='Radio']");
+	let editBtn = document.querySelectorAll(".edit-btn");
+	editBtn.forEach((ele) => {
+		ele.addEventListener("click", (e) => {
+			e.preventDefault();
+			let editId = e.target.id;
+			allTasks.forEach((ele) => {
+				if (ele.id3 == editId) {
+					editTitle.value = ele.title;
+					editDescription.value = ele.description;
+					editPriority.forEach((element) => {
+						if (element.value == ele.priority) {
+							element.checked = true;
+						}
+					});
+					editForm.addEventListener("submit", (e) => {
+						e.preventDefault();
+						let title = e.target.Title.value;
+						let description = e.target.Description.value;
+						let priority = e.target.Radio.value;
+
+						ele.title = title;
+						ele.description = description;
+						ele.priority = priority;
+						saveToLocal();
+						cardRow.innerHTML = "";
+						getFromLocal();
+					});
+				}
+			});
+		});
+	});
 
 	// function to delete each element
 	let deleteBtn = document.querySelectorAll(".delete-btn");
@@ -189,6 +238,12 @@ function addCard(task) {
 				});
 			} else {
 				console.log("Checkbox is not checked..");
+				allTasks.forEach((element) => {
+					if (element.id2 == checkId) {
+						element.status = "incomplete";
+						saveToLocal();
+					}
+				});
 			}
 		});
 	});

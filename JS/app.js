@@ -104,17 +104,17 @@ regForm.addEventListener("submit", function (e) {
 		lName.style.background = "rgba(0, 128, 0, 0.347)";
 		signEmail.style.background = "rgba(0, 128, 0, 0.347)";
 		signPassword.style.background = "rgba(0, 128, 0, 0.347)";
-		let v = false;
+		let verified = false;
 		e.preventDefault();
 		// get data into array
 		if (arr != null) {
 			arr.forEach((user) => {
 				if (signEmail.value != user.email) {
-					v = true;
+					verified = true;
 				}
 			});
 
-			if (v) {
+			if (verified) {
 				signUpAction();
 			} else {
 				alert("This email is already registered!");
@@ -153,7 +153,7 @@ const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (e) {
 	e.preventDefault();
-	let v = false;
+	let verified = false;
 	let correctUser;
 	if (arr) {
 		for (let i = 0; i < arr.length; i++) {
@@ -161,7 +161,7 @@ loginForm.addEventListener("submit", function (e) {
 				arr[i].email == logEmail.value &&
 				atob(arr[i].password) == logPassword.value
 			) {
-				v = true;
+				verified = true;
 				correctUser = arr[i];
 			}
 		}
@@ -169,8 +169,8 @@ loginForm.addEventListener("submit", function (e) {
 		alert("This email is not registered");
 	}
 
-	console.log(v);
-	if (v) {
+	console.log(verified);
+	if (verified) {
 		logEmail.style.background = "rgba(0, 128, 0, 0.347)";
 		logPassword.style.background = "rgba(0, 128, 0, 0.347)";
 		localStorage.setItem("currentloggedin", JSON.stringify(correctUser));
