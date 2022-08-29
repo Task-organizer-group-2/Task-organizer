@@ -52,7 +52,7 @@ logoutBtn.addEventListener("click", (e) => {
 // laith
 // add tasks by form--------------------------------------
 
-function Task(title, description, priority) {
+function Task(title, description, priority, color) {
 	this.title = title;
 	this.description = description;
 	this.priority = priority;
@@ -62,6 +62,7 @@ function Task(title, description, priority) {
 	this.id3 = Math.floor((1 + Math.random()) * 0x10000)
 		.toString(16)
 		.substring(1);
+	this.color = color;
 }
 
 let allTasks = [];
@@ -75,8 +76,9 @@ function render(event) {
 	let title = event.target.Title.value;
 	let description = event.target.Description.value;
 	let priority = event.target.Radio.value;
+	let descColor = document.getElementById("colorPicker").value;
 
-	let taskCard = new Task(title, description, priority);
+	let taskCard = new Task(title, description, priority, descColor);
 	allTasks.push(taskCard);
 	saveToLocal();
 
@@ -140,7 +142,7 @@ function addCard(task) {
     >
     <img src="./images/create-outline.svg" id= "${task.id3}" name="id">
      </a>
-    <h2>${task.title}</h2>
+    <h2 style="color : ${task.color}">${task.title}</h2>
     <p class="scrollDesc" >${task.description}</p>
 	<input type="checkbox" name="checkbox" class="check-btn" id="${
 		task.id2
