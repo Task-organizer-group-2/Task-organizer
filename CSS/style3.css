@@ -76,7 +76,7 @@ nav ul li a:hover {
 	/* display: flex; */
 	/* flex-direction: column; */
 	/* flex-wrap: wrap-reverse; */
-	overflow: scroll;
+
 	color: white;
 }
 
@@ -233,6 +233,9 @@ nav ul li a:hover {
 	}
 }
 @media (max-width: 790px) {
+	.heroSection {
+		overflow: scroll;
+	}
 	.herocontent {
 		text-align: center;
 	}
