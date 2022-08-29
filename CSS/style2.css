@@ -293,7 +293,35 @@ body.dark .showAll {
 	/* color: white; */
 	background-color: rgba(191, 187, 187, 0.303);
 }
+/* /// give the user the ability to change the text color */
+[type="color"] {
+	appearance: none;
+	padding: 0;
+	/* padding-top: 5px; */
+	width: 15px;
+	height: 15px;
+	border: none;
+}
 
+[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+.color-picker {
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	background: #f8f9f9;
+	width: 250px;
+}
+
+body.dark .color-picker {
+	color: #010718;
+}
 /* Dropdown Start here*/
 .dropdown {
 	position: relative;
@@ -411,7 +439,7 @@ body.dark #add-btn {
 }
 #cards-container #cards {
 	overflow-y: scroll;
-	max-height: 70vh;
+	max-height: 100vh;
 }
 
 #cards-container h1:first-of-type {

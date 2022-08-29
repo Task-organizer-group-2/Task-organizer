@@ -17,7 +17,9 @@ body {
 	);
 	color: white;
 }
-
+main {
+	padding-bottom: 10%;
+}
 .nav {
 	display: flex;
 	justify-content: space-between;
@@ -71,8 +73,10 @@ nav ul li a:hover {
 }
 
 .heroSection {
-	display: flex;
-	flex-direction: column;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* flex-wrap: wrap-reverse; */
+	overflow: scroll;
 	color: white;
 }
 
@@ -80,6 +84,7 @@ nav ul li a:hover {
 	display: flex;
 	color: white;
 	justify-content: space-around;
+	flex-wrap: wrap;
 	align-items: center;
 	height: 100vh;
 }
@@ -106,6 +111,7 @@ nav ul li a:hover {
 	align-items: center;
 	height: 60vh;
 	flex-wrap: wrap;
+	gap: 30px;
 	/* background-color: seashell; */
 }
 
@@ -224,5 +230,13 @@ nav ul li a:hover {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+@media (max-width: 790px) {
+	.herocontent {
+		text-align: center;
+	}
+	#CARDS {
+		overflow: scroll;
 	}
 }
