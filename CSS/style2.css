@@ -263,12 +263,13 @@ body.dark #formDiv {
 body.dark #label {
 	color: #292c35;
 }
-.red {
+.red .priorityForm {
 	color: hsl(0, 78%, 62%);
+	/* text-decoration: underline; */
 	font-weight: bolder;
 }
 
-.orange {
+.orange .priorityForm {
 	color: hsl(34, 97%, 64%);
 	font-weight: 600;
 }
@@ -291,32 +292,6 @@ body.dark .showAll {
 	/* box-shadow: -1px 2px 2px grey; */
 	/* color: white; */
 	background-color: rgba(191, 187, 187, 0.303);
-}
-
-/* /// give the user the ability to change the text color / */
-[type="color"] {
-	appearance: none;
-	padding: 0;
-	/* padding-top: 5px;  */
-	width: 15px;
-	height: 15px;
-	border: none;
-}
-
-[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-
-[type="color"]::-webkit-color-swatch {
-	border: none;
-}
-
-.color-picker {
-	padding: 10px 15px;
-	border-radius: 10px;
-	border: 1px solid #ccc;
-	background: #f8f9f9;
-	width: 250px;
 }
 
 /* Dropdown Start here*/
@@ -485,7 +460,6 @@ body.dark #cards-container .box h2 {
 	padding: 30px;
 	margin: 20px;
 	position: relative;
-	height: fit-content;
 }
 
 body.dark #cards-container .box {
@@ -528,6 +502,8 @@ body.dark #cards-container .box {
 #cards-container h2 {
 	color: hsl(234, 12%, 34%);
 	font-weight: 600;
+	height: 38.4px;
+	overflow: hidden;
 }
 
 #cards-container .fill {
@@ -546,6 +522,19 @@ body.dark #cards-container .box {
 
 body.dark #cards-container .fill {
 	color: #ffffff;
+}
+
+.scrollDesc {
+	height: 72px;
+	overflow: scroll;
+}
+
+.scrollDesc {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+}
+.scrollDesc::-webkit-scrollbar {
+	display: none; /* Safari and Chrome */
 }
 
 /* media emad */

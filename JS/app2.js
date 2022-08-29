@@ -76,9 +76,6 @@ function render(event) {
 	let description = event.target.Description.value;
 	let priority = event.target.Radio.value;
 
-	// let descColor = document.getElementById("colorPicker").value;
-	// console.log(descColor);
-
 	let taskCard = new Task(title, description, priority);
 	allTasks.push(taskCard);
 	saveToLocal();
@@ -132,6 +129,7 @@ function addCard(task) {
 	if (task.status == "completed") {
 		isChecked = "checked";
 	}
+
 	taskCard.innerHTML = `
     <div class="box ${colorClass(task.priority)}" >
     <a href="" class="delete-btn" style="color: black" 
@@ -143,7 +141,7 @@ function addCard(task) {
     <img src="./images/create-outline.svg" id= "${task.id3}" name="id">
      </a>
     <h2>${task.title}</h2>
-    <p>${task.description}</p>
+    <p class="scrollDesc" >${task.description}</p>
 	<input type="checkbox" name="checkbox" class="check-btn" id="${
 		task.id2
 	}" ${isChecked}>
@@ -152,6 +150,7 @@ function addCard(task) {
     `;
 
 	document.getElementById("card-row").appendChild(taskCard);
+
 	task.element = taskCard;
 	allCards.push(task);
 
